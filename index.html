@@ -97,6 +97,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     
     <body>
+    <iframe src="silence.mp3" allow="autoplay" style="display: none" id="audio"></iframe>
+    <audio autoplay loop  id="playAudio">
+      <source src="silence.mp3">
+    </audio>
+    </iframe> 
     <div class="header"> 
         <p>The Eco Arcitecht</p>
     </div>
@@ -125,15 +130,21 @@
     var current_loc = 4;
 
     var content = document.getElementsByClassName("content");
- 
-    window.audio = new Audio('Narrator_WhenYouHearThisPressAnyKey.mp3');
-    var beep = new Audio('beep.mp3');
-    window.audio.onended = function() { beep.play(); holding = 0; };
-    window.audio.play();
-    window.bg = new Audio('Green Background.mp3');
-    window.bg.loop = true;
-    window.bg.volume = 0.025;
-    window.bg.play();
+
+    window.onload = function() {
+      var context = new AudioContext();
+    }  
+    
+    window.onclick = function () {
+      window.audio = new Audio('Narrator_WhenYouHearThisPressAnyKey.mp3');
+      var beep = new Audio('beep.mp3');
+      window.audio.onended = function() { beep.play(); holding = 0; };
+      window.audio.play();
+      window.bg = new Audio('Green Background.mp3');
+      window.bg.loop = true;
+      window.bg.volume = 0.025;
+      window.bg.play();
+    }
 
     function north() {
       if ((current_loc-3) >= 0) {
